@@ -26,19 +26,9 @@
 #define PI 3.1415
 
 class Evo_Agent_KUR {
-    double raw_fitness; /// raw fitness calculated by treasure, time
+    
     double f1;
     double f2;
-    
-    double transformed_treasure;
-    double transformed_time;
-
-    void console_1vector(vector<double>);
-    void console_2vector(vector<vector<double> >);
-
-    double Initial_Q_Value;
-    
-    
     
     void create_action_vector();
 
@@ -49,9 +39,6 @@ public:
     double get_action(int time);
     double get_fitness();
     void mutate();
-    double action;
-    void show_action_vector();
-    int id;
     
     void start();       //Used before first run of a statistical run / repeat
     void reset();       //Used at start of episode
@@ -61,7 +48,6 @@ public:
     double get_f1();
     double get_f2();
     
-    void set_raw_fitness(double raw);
     void set_fitness(double fit);
 };
 
@@ -77,7 +63,6 @@ void Evo_Agent_KUR::reset() {
 }
 
 void Evo_Agent_KUR::create_action_vector(){
-    cout << "action vector in! " << id << endl;
     double r1;
     actions.clear();
     for(int i=0; i<3; i++){
@@ -111,34 +96,8 @@ double Evo_Agent_KUR::get_f2(){
     return f2;
 }
 
-void Evo_Agent_KUR::set_raw_fitness(double raw){
-    raw_fitness=raw;
-}
-
 void Evo_Agent_KUR::set_fitness(double fit){
     fitness=fit;
-}
-
-void Evo_Agent_KUR::console_2vector(vector< vector<double> > a) {
-    for (int i = 0; i < a.size(); i++) {
-        console_1vector(a.at(i));
-        cout << endl;
-    }
-}
-
-void Evo_Agent_KUR::console_1vector(vector<double> a) {
-    for (int i = 0; i < a.size(); i++) {
-        cout << a.at(i);
-        cout << "\t";
-    }
-}
-
-void Evo_Agent_KUR::show_action_vector() {
-    int A=actions.size();
-    for(int a=0; a<A; a++){
-        cout << actions.at(a) << "\t";
-    }
-    cout << endl;
 }
 
 void Evo_Agent_KUR::mutate() {
